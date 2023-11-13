@@ -7,8 +7,10 @@ import Footer from "./components/Footer.tsx"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Navbar />
-    <App />
-    <Footer />
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <App />
+      <Footer />
+    </div>
   </React.StrictMode>
 )
