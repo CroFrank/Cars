@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import App from "./App.tsx"
+import App from "./pages/Home.tsx"
 import "./index.css"
 import Navbar from "./components/Navbar.tsx"
 import Footer from "./components/Footer.tsx"
