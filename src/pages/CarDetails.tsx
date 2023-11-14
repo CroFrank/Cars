@@ -1,4 +1,5 @@
 import AnchorTagBtn from "../components/AnchorTagBtn"
+import Button from "../components/Button"
 
 export default function CarDetails() {
   return (
@@ -20,9 +21,7 @@ export default function CarDetails() {
             <p className="mb-5 text-black text-lg">20.000€</p>
             <div className="flex justify-between gap-5 w-full md:justify-around">
               <AnchorTagBtn location="#" style="edit" children="Edit" />
-              <button className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">
-                Delete
-              </button>
+              <Button style="delete" children="Delete" />
             </div>
           </section>
         </article>

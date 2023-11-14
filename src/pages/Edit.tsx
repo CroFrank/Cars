@@ -1,11 +1,11 @@
 import AnchorTagBtn from "../components/AnchorTagBtn"
 import Button from "../components/Button"
 
-export default function New() {
+export default function Edit() {
   return (
     <div className="container mx-auto flex-grow p-4">
       <h2 className="mx-auto mt-8 mb-12 text-center font-semibold text-yellow-600 text-2xl">
-        Create new car model
+        Edit car model
       </h2>
       <form
         action="#"
@@ -58,7 +58,7 @@ export default function New() {
         </div>
 
         <div className="flex justify-between">
-          <Button style="submit" children="Create" />
+          <Button style="submit" children="Edit" />
           <AnchorTagBtn location="#" style="cancel" children="Cancel" />
         </div>
       </form>
