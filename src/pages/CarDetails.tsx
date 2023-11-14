@@ -14,13 +14,11 @@ export default function CarDetails() {
             />
           </section>
           <section className="prosto-one flex flex-col items-center w-full md:max-w-md">
-            <h3 className="text-black text-3xl mb-3 text-center">
-              Car Model fsdffff sddddddd f
-            </h3>
+            <h3 className="text-black text-3xl mb-3 text-center">Car Model</h3>
             <h4 className="text-black text-lg mb-3 text-center">Car Brand</h4>
             <p className="mb-5 text-black text-lg">20.000€</p>
             <div className="flex justify-between gap-5 w-full md:justify-around">
-              <AnchorTagBtn location="#" style="edit" children="Edit" />
+              <AnchorTagBtn location="/edit" style="edit" children="Edit" />
               <Button style="delete" children="Delete" />
             </div>
           </section>

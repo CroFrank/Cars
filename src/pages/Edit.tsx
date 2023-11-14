@@ -1,7 +1,8 @@
-import AnchorTagBtn from "../components/AnchorTagBtn"
+import { useNavigate } from "react-router-dom"
 import Button from "../components/Button"
 
 export default function Edit() {
+  const navigate = useNavigate()
   return (
     <div className="container mx-auto flex-grow p-4">
       <h2 className="mx-auto mt-8 mb-12 text-center font-semibold text-yellow-600 text-2xl">
@@ -59,7 +60,12 @@ export default function Edit() {
 
         <div className="flex justify-between">
           <Button style="submit" children="Edit" />
-          <AnchorTagBtn location="#" style="cancel" children="Cancel" />
+          <Button
+            action={() => navigate(-1)}
+            style="delete"
+            children="Cancle"
+            type="button"
+          />
         </div>
       </form>
     </div>

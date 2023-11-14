@@ -24,7 +24,6 @@ export default function Home() {
           <Car />
           <Car />
           <Car />
-
           <Car />
         </section>
         <Pagination />

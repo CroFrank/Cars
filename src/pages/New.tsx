@@ -59,7 +59,7 @@ export default function New() {
 
         <div className="flex justify-between">
           <Button style="submit" children="Create" />
-          <AnchorTagBtn location="#" style="cancel" children="Cancel" />
+          <AnchorTagBtn location="/" style="cancel" children="Cancel" />
         </div>
       </form>
     </div>
