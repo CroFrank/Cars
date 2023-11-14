@@ -1,7 +1,8 @@
 import Car from "./components/Car"
+import Pagination from "./components/Pagination"
 import SelectBtn from "./components/SelectBtn"
 
-function App() {
+export default function App() {
   return (
     <div className="container mx-auto flex-grow p-4">
       <main className="flex flex-col">
@@ -22,10 +23,8 @@ function App() {
           <Car />
           <Car />
         </section>
-        <section className="flex justify-center mt-8">pagination</section>
+        <Pagination />
       </main>
     </div>
   )
 }
-
-export default App
