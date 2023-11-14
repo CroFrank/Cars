@@ -1,3 +1,4 @@
+import Car from "./components/Car"
 import SelectBtn from "./components/SelectBtn"
 
 function App() {
@@ -12,14 +13,14 @@ function App() {
           </div>
         </section>
         <section className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-16">
-          <div>grid system</div>
-          <div>grid system</div>
-          <div>grid system</div>
-          <div>grid system</div>
-          <div>grid system</div>
-          <div>grid system</div>
-          <div>grid system</div>
-          <div>grid system</div>
+          <Car />
+          <Car />
+          <Car />
+          <Car />
+          <Car />
+          <Car />
+          <Car />
+          <Car />
         </section>
         <section className="flex justify-center mt-8">pagination</section>
       </main>
