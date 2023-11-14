@@ -1,4 +1,4 @@
-import AnchorTag from "./AnchorTag"
+import AnchorTag from "./AnchorTagBtn"
 
 export default function Navbar() {
   return (

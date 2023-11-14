@@ -10,13 +10,16 @@ const styles = {
   cancel: "bg-red-700 hover:bg-red-600",
 }
 
-export default function AnchorTag({
+export default function AnchorTagBtn({
   location,
   style,
   children,
 }: AnchorTagProps) {
   return (
-    <a href={location} className={`${styles[style]} px-4 py-2 rounded`}>
+    <a
+      href={location}
+      className={`${styles[style]} px-4 py-2 rounded text-white`}
+    >
       {children}
     </a>
   )
