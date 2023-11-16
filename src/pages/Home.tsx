@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import Car from "../components/Car"
 import Pagination from "../components/Pagination"
 import SelectBtn from "../components/SelectBtn"
-import { url } from "../firebase-config"
+import { urlAll } from "../firebase-config"
 
 export default function Home() {
   const [cars, setCars] = useState([])
   useEffect(() => {
     const getCars = async () => {
-      await fetch(url)
+      await fetch(urlAll)
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`)
@@ -17,7 +17,6 @@ export default function Home() {
         })
         .then((data) => {
           setCars(data.documents)
-          console.log(data.documents)
         })
         .catch((error) => {
           console.error("Error fetching data:", error)
