@@ -25,7 +25,6 @@ export default function CarDetails() {
           return response.json()
         })
         .then((data) => {
-          console.log(data.fields.name)
           setCar(data.fields)
         })
         .catch((error) => {
@@ -74,7 +73,11 @@ export default function CarDetails() {
             </h4>
             <p className="mb-5 text-black text-lg">{car.price.stringValue} €</p>
             <div className="flex justify-between gap-5 w-full md:justify-around">
-              <AnchorTagBtn location="/edit" style="edit" children="Edit" />
+              <AnchorTagBtn
+                location={`/edit?id=${id}`}
+                style="edit"
+                children="Edit"
+              />
               <Button action={handleDelete} style="delete" children="Delete" />
             </div>
           </section>
