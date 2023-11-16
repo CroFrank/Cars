@@ -4,6 +4,18 @@ import Pagination from "../components/Pagination"
 import SelectBtn from "../components/SelectBtn"
 import { url } from "../firebase-config"
 
+interface CarData {
+  stringValue: string
+}
+
+interface Car {
+  fields: {
+    name: CarData
+    brand: CarData
+    price: CarData
+  }
+}
+
 export default function Home() {
   const [cars, setCars] = useState([])
   useEffect(() => {
@@ -16,7 +28,6 @@ export default function Home() {
           return response.json()
         })
         .then((data) => {
-          console.log("Data from Firestore:", data.documents)
           setCars(data.documents)
         })
         .catch((error) => {
@@ -36,8 +47,8 @@ export default function Home() {
           </div>
         </section>
         <section className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-16">
-          {cars.map(() => {
-            return <Car />
+          {cars.map((car: Car) => {
+            return <Car car={car.fields} />
           })}
         </section>
         <Pagination />

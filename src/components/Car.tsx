@@ -1,4 +1,14 @@
-export default function Car() {
+interface CarData {
+  stringValue: string
+}
+
+interface Car {
+  name: CarData
+  brand: CarData
+  price: CarData
+}
+
+export default function Car({ car }: { car: Car }) {
   return (
     <a href="/car/:id" className="w-48 hover:scale-105">
       <div className="h-72">
@@ -8,7 +18,7 @@ export default function Car() {
         />
       </div>
       <div className="rounded-b-md h-20 bg-red-900 flex items-center justify-center text-white font-semibold">
-        <p className="px-3 py-2 text-center">title</p>
+        <p className="px-3 py-2 text-center">{car.name.stringValue}</p>
       </div>
     </a>
   )
