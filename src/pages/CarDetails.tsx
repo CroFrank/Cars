@@ -1,17 +1,20 @@
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import AnchorTagBtn from "../components/AnchorTagBtn"
 import Button from "../components/Button"
 import { firebaseConfig } from "../firebase-config"
 import { useEffect, useState } from "react"
 
 export default function CarDetails() {
+  const navigate = useNavigate()
   const { id } = useParams()
+
   const urlOne = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/${firebaseConfig.collection}/${id}?key=${firebaseConfig.apiKey}`
   const [car, setCar] = useState<Car>({
     name: { stringValue: "Car model" },
     brand: { stringValue: "Car Brand" },
     price: { stringValue: "Price" },
   })
+
   useEffect(() => {
     const getCars = async () => {
       await fetch(urlOne)
@@ -30,7 +33,27 @@ export default function CarDetails() {
         })
     }
     getCars()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const handleDelete = async () => {
+    await fetch(urlOne, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        navigate("/")
+      })
+      .catch((error) => {
+        console.error("Error deleting document:", error)
+      })
+  }
+
   return (
     <div className="container mx-auto flex-grow p-4">
       <main className="flex flex-col items-center">
@@ -52,7 +75,7 @@ export default function CarDetails() {
             <p className="mb-5 text-black text-lg">{car.price.stringValue} €</p>
             <div className="flex justify-between gap-5 w-full md:justify-around">
               <AnchorTagBtn location="/edit" style="edit" children="Edit" />
-              <Button style="delete" children="Delete" />
+              <Button action={handleDelete} style="delete" children="Delete" />
             </div>
           </section>
           <a

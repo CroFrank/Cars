@@ -36,7 +36,7 @@ export default function Home() {
         </section>
         <section className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-16">
           {cars.map((car: CarProps) => {
-            return <Car car={car} />
+            return <Car key={car.name} car={car} />
           })}
         </section>
         <Pagination />
