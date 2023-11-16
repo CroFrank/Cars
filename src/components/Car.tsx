@@ -1,13 +1,3 @@
-interface CarData {
-  stringValue: string
-}
-
-interface Car {
-  name: CarData
-  brand: CarData
-  price: CarData
-}
-
 export default function Car({ car }: { car: Car }) {
   return (
     <a href="/car/:id" className="w-48 hover:scale-105">

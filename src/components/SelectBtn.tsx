@@ -1,7 +1,3 @@
-interface SelectBtnProps {
-  children: string
-}
-
 export default function SelectBtn({ children }: SelectBtnProps) {
   return (
     <button className="border-2 border-red-500 text-red-500 bg-transparent px-4 py-2 rounded inline-flex items-center">

@@ -4,18 +4,6 @@ import Pagination from "../components/Pagination"
 import SelectBtn from "../components/SelectBtn"
 import { url } from "../firebase-config"
 
-interface CarData {
-  stringValue: string
-}
-
-interface Car {
-  fields: {
-    name: CarData
-    brand: CarData
-    price: CarData
-  }
-}
-
 export default function Home() {
   const [cars, setCars] = useState([])
   useEffect(() => {
@@ -47,7 +35,7 @@ export default function Home() {
           </div>
         </section>
         <section className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-16">
-          {cars.map((car: Car) => {
+          {cars.map((car: CarProps) => {
             return <Car car={car.fields} />
           })}
         </section>

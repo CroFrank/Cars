@@ -1,9 +1,3 @@
-interface AnchorTagProps {
-  location: string
-  style: "create" | "edit" | "cancel"
-  children: string
-}
-
 const styles = {
   create: "bg-green-700 hover:bg-green-600",
   edit: "bg-blue-700 hover:bg-blue-600",

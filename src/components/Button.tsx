@@ -1,10 +1,3 @@
-interface ButtonProps {
-  style: "submit" | "delete"
-  children: string
-  action?: () => void
-  type?: "button" | "reset" | "submit" | undefined
-}
-
 const styles = {
   submit: "bg-blue-700 hover:bg-blue-600",
   delete: "bg-red-700 hover:bg-red-600",
