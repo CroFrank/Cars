@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import Car from "../components/Car"
 import Pagination from "../components/Pagination"
 import SelectBtn from "../components/SelectBtn"
-import { urlAll } from "../firebase-config"
+import { url } from "../firebase-config"
 
 export default function Home() {
   const [cars, setCars] = useState([])
   useEffect(() => {
     const getCars = async () => {
-      await fetch(urlAll)
+      await fetch(url)
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`)

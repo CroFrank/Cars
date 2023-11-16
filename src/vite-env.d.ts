@@ -8,13 +8,13 @@ interface CarProps {
   fields: {
     name: CarData
     brand: CarData
-    price: { integerValue: string }
+    price: CarData
   }
 }
 interface Car {
   name: CarData
   brand: CarData
-  price: { integerValue: string }
+  price: CarData
 }
 interface AnchorTagProps {
   location: string

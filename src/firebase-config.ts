@@ -12,7 +12,7 @@ export const firebaseConfig = {
   collection: import.meta.env.VITE_collection,
 }
 
-export const urlAll = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/${firebaseConfig.collection}?key=${firebaseConfig.apiKey}`
+export const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/${firebaseConfig.collection}?key=${firebaseConfig.apiKey}`
 
 // export const app = initializeApp(firebaseConfig)
 // export const db = getFirestore(app)

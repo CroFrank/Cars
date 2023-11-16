@@ -1,14 +1,53 @@
+import { FormEvent, useState } from "react"
 import AnchorTagBtn from "../components/AnchorTagBtn"
 import Button from "../components/Button"
+import { url } from "../firebase-config"
 
 export default function New() {
+  const [name, setName] = useState("")
+  const [brand, setBrand] = useState("")
+  const [price, setPrice] = useState("")
+  const data = {
+    fields: {
+      name: { stringValue: name },
+      brand: { stringValue: brand },
+      price: { stringValue: price },
+    },
+  }
+  const handleSubmit = async (e: FormEvent) => {
+    console.log(data)
+    e.preventDefault()
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        return response.json()
+      })
+      .then((data) => {
+        console.log("Data posted to Firestore:", data)
+      })
+      .catch((error) => {
+        console.error("Error posting data:", error)
+      })
+    setBrand("")
+    setName("")
+    setPrice("")
+  }
+
   return (
     <div className="container mx-auto flex-grow p-4">
       <h2 className="mx-auto mt-8 mb-12 text-center font-semibold text-yellow-600 text-2xl">
         Create new car model
       </h2>
       <form
-        action="#"
+        onSubmit={handleSubmit}
         method="post"
         className="max-w-md mx-auto my-8 p-4 border-2 rounded-md shadow-md"
       >
@@ -22,7 +61,9 @@ export default function New() {
           <input
             type="text"
             id="carModel"
-            name="carModel"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
@@ -37,7 +78,9 @@ export default function New() {
           <input
             type="text"
             id="carBrand"
-            name="carBrand"
+            name="brand"
+            value={brand}
+            onChange={(e) => setBrand(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
@@ -53,12 +96,14 @@ export default function New() {
             type="text"
             id="price"
             name="price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
 
         <div className="flex justify-between">
-          <Button style="submit" children="Create" />
+          <Button type="submit" style="submit" children="Create" />
           <AnchorTagBtn location="/" style="cancel" children="Cancel" />
         </div>
       </form>

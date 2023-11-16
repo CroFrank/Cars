@@ -10,7 +10,7 @@ export default function CarDetails() {
   const [car, setCar] = useState<Car>({
     name: { stringValue: "Car model" },
     brand: { stringValue: "Car Brand" },
-    price: { integerValue: "Price" },
+    price: { stringValue: "Price" },
   })
   useEffect(() => {
     const getCars = async () => {
@@ -49,9 +49,7 @@ export default function CarDetails() {
             <h4 className="text-black text-lg mb-3 text-center">
               {car.brand.stringValue}
             </h4>
-            <p className="mb-5 text-black text-lg">
-              {car.price.integerValue} €
-            </p>
+            <p className="mb-5 text-black text-lg">{car.price.stringValue} €</p>
             <div className="flex justify-between gap-5 w-full md:justify-around">
               <AnchorTagBtn location="/edit" style="edit" children="Edit" />
               <Button style="delete" children="Delete" />
