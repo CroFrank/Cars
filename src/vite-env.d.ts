@@ -4,6 +4,7 @@ interface CarData {
   stringValue: string
 }
 interface CarProps {
+  name: string
   fields: {
     name: CarData
     brand: CarData

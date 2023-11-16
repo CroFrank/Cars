@@ -17,6 +17,7 @@ export default function Home() {
         })
         .then((data) => {
           setCars(data.documents)
+          console.log(data.documents)
         })
         .catch((error) => {
           console.error("Error fetching data:", error)
@@ -36,7 +37,7 @@ export default function Home() {
         </section>
         <section className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-16">
           {cars.map((car: CarProps) => {
-            return <Car car={car.fields} />
+            return <Car car={car} />
           })}
         </section>
         <Pagination />
