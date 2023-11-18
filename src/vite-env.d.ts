@@ -16,6 +16,10 @@ interface Car {
   brand: CarData
   price: CarData
 }
+
+interface FilterCar {
+  fields: { brand: { stringValue: string } }
+}
 interface AnchorTagProps {
   location: string
   style: "create" | "edit" | "cancel"
@@ -29,6 +33,6 @@ interface ButtonProps {
   type?: "button" | "reset" | "submit" | undefined
 }
 
-interface SelectBtnProps {
+interface FilterBtnProps {
   children: string
 }
