@@ -2,11 +2,13 @@ import { FormEvent, useState } from "react"
 import AnchorTagBtn from "../components/AnchorTagBtn"
 import Button from "../components/Button"
 import { url } from "../firebase-config"
+import { useNavigate } from "react-router-dom"
 
 export default function New() {
   const [name, setName] = useState("")
   const [brand, setBrand] = useState("")
   const [price, setPrice] = useState("")
+
   const data = {
     fields: {
       name: { stringValue: name },
@@ -14,8 +16,10 @@ export default function New() {
       price: { stringValue: price },
     },
   }
+
+  const navigate = useNavigate()
+
   const handleSubmit = async (e: FormEvent) => {
-    console.log(data)
     e.preventDefault()
     await fetch(url, {
       method: "POST",
@@ -39,6 +43,7 @@ export default function New() {
     setBrand("")
     setName("")
     setPrice("")
+    navigate("/")
   }
 
   return (
