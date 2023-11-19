@@ -11,6 +11,7 @@ export default function Car({ car }: { car: CarProps }) {
       <div className="rounded-b-md h-20 bg-red-900 flex items-center justify-center text-white font-semibold">
         <p className="px-3 py-2 text-center">{car.fields.name.stringValue}</p>
       </div>
+      <span className="mx-auto">{car.fields.price.stringValue} €</span>
     </a>
   )
 }

@@ -9,12 +9,21 @@ export default function Home() {
   const [cars, setCars] = useState([])
   const [filteredOption, setFilteredOption] = useState("All")
   const [sortedOption, setSortedOption] = useState("Alphabetic")
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const carsPerPage = 3
+  const startIndex = (currentPage - 1) * carsPerPage
+  const endIndex = startIndex + carsPerPage
+  const currentCars = cars.slice(startIndex, endIndex)
 
   const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setFilteredOption(e.target.value)
   }
   const handleSortedChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSortedOption(e.target.value)
+  }
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage)
   }
 
   useEffect(() => {
@@ -53,7 +62,6 @@ export default function Home() {
             }
           })
           setCars(filtered)
-          console.log(sortedOption)
         })
         .catch((error) => {
           console.error("Error fetching data:", error)
@@ -73,11 +81,16 @@ export default function Home() {
           </div>
         </section>
         <section className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-16">
-          {cars.map((car: CarProps) => {
+          {currentCars.map((car: CarProps) => {
             return <Car key={car.name} car={car} />
           })}
         </section>
-        <Pagination />
+        <Pagination
+          action={handlePageChange}
+          currentPage={currentPage}
+          endIndex={endIndex}
+          allCars={cars}
+        />
       </main>
     </div>
   )
