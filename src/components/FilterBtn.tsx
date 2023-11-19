@@ -1,10 +1,3 @@
-import { ChangeEvent } from "react"
-
-interface FilterBtnProps {
-  option: string
-  action: (e: ChangeEvent<HTMLSelectElement>) => void
-}
-
 export default function FilterBtn({ option, action }: FilterBtnProps) {
   const brands = ["Peugeot", "BMW", "Renault", "Kia", "Ford"].sort()
   return (

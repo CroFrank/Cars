@@ -18,7 +18,7 @@ interface Car {
 }
 
 interface FilterCar {
-  fields: { brand: { stringValue: string } }
+  fields: { brand: { stringValue: string }; price: { stringValue: string } }
 }
 interface AnchorTagProps {
   location: string
@@ -34,5 +34,6 @@ interface ButtonProps {
 }
 
 interface FilterBtnProps {
-  children: string
+  option: string
+  action: (e: ChangeEvent<HTMLSelectElement>) => void
 }
