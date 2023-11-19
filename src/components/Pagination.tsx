@@ -1,10 +1,3 @@
-interface PaginationProps {
-  action: (currentPage: number) => void
-  currentPage: number
-  endIndex: number
-  allCars: CarProps[]
-}
-
 export default function Pagination({
   action,
   currentPage,

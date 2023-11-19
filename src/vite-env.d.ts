@@ -37,3 +37,10 @@ interface FilterBtnProps {
   option: string
   action: (e: ChangeEvent<HTMLSelectElement>) => void
 }
+
+interface PaginationProps {
+  action: (currentPage: number) => void
+  currentPage: number
+  endIndex: number
+  allCars: CarProps[]
+}

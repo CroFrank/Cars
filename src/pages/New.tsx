@@ -3,6 +3,7 @@ import AnchorTagBtn from "../components/AnchorTagBtn"
 import Button from "../components/Button"
 import { url } from "../firebase-config"
 import { useNavigate } from "react-router-dom"
+import { brands } from "../brands"
 
 export default function New() {
   const [name, setName] = useState("")
@@ -80,14 +81,21 @@ export default function New() {
           >
             Car Brand
           </label>
-          <input
-            type="text"
+          <select
             id="carBrand"
             name="brand"
             value={brand}
             onChange={(e) => setBrand(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
-          />
+          >
+            {brands.map((brand, index) => {
+              return (
+                <option key={index} value={brand}>
+                  {brand.toUpperCase()}
+                </option>
+              )
+            })}
+          </select>
         </div>
 
         <div className="mb-4">

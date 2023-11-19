@@ -1,5 +1,6 @@
+import { brands } from "../brands"
+
 export default function FilterBtn({ option, action }: FilterBtnProps) {
-  const brands = ["Peugeot", "BMW", "Renault", "Kia", "Ford"].sort()
   return (
     <select
       id="selectOption"
