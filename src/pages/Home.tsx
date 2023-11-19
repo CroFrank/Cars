@@ -11,7 +11,7 @@ export default function Home() {
   const [sortedOption, setSortedOption] = useState("Alphabetic")
   const [currentPage, setCurrentPage] = useState(1)
 
-  const carsPerPage = 3
+  const carsPerPage = 12
   const startIndex = (currentPage - 1) * carsPerPage
   const endIndex = startIndex + carsPerPage
   const currentCars = cars.slice(startIndex, endIndex)
