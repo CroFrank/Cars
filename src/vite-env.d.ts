@@ -43,4 +43,5 @@ interface PaginationProps {
   currentPage: number
   endIndex: number
   allCars: CarProps[]
+  carsPerPage: number
 }

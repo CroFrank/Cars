@@ -90,6 +90,7 @@ export default function Home() {
           currentPage={currentPage}
           endIndex={endIndex}
           allCars={cars}
+          carsPerPage={carsPerPage}
         />
       </main>
     </div>

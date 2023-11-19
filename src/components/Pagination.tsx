@@ -3,6 +3,7 @@ export default function Pagination({
   currentPage,
   endIndex,
   allCars,
+  carsPerPage,
 }: PaginationProps) {
   return (
     <div className={`flex justify-center mt-8 gap-5`}>
@@ -27,8 +28,8 @@ export default function Pagination({
       </button>
       <span>
         {" "}
-        Page {currentPage} of
-        {/* {Math.ceil(itemList.length / itemsPerPage)}{" "} */}
+        Page <b>{currentPage}</b> of{" "}
+        <b>{Math.ceil(allCars.length / carsPerPage)}</b>
       </span>
       <button
         className={`${endIndex >= allCars.length ? "text-slate-300" : ""}`}
