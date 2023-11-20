@@ -1,14 +1,15 @@
-import { FormEvent, useState } from "react"
+import { FormEvent } from "react"
 import AnchorTagBtn from "../components/AnchorTagBtn"
 import Button from "../components/Button"
 import { url } from "../firebase-config"
 import { useNavigate } from "react-router-dom"
 import { brands } from "../brands"
+import { observer } from "mobx-react"
+import carStore from "../stores/CarStore"
 
-export default function New() {
-  const [name, setName] = useState("")
-  const [brand, setBrand] = useState("")
-  const [price, setPrice] = useState("")
+const New = observer(() => {
+  const { name, brand, price, setName, setPrice, setBrand, resetForm } =
+    carStore
 
   const data = {
     fields: {
@@ -41,9 +42,7 @@ export default function New() {
       .catch((error) => {
         console.error("Error posting data:", error)
       })
-    setBrand("")
-    setName("")
-    setPrice("")
+    resetForm()
     navigate("/")
   }
 
@@ -122,4 +121,6 @@ export default function New() {
       </form>
     </div>
   )
-}
+})
+
+export default New
