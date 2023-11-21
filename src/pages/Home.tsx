@@ -42,28 +42,26 @@ const Home = observer(() => {
           return response.json()
         })
         .then((data) => {
-          const filtered = data.documents.filter((car: FilterCar) => {
+          const filtered = data.documents.filter((car: NewCarData) => {
             if (filteredOption === "All") {
-              return car.fields.brand.stringValue
+              return car
             }
             return car.fields.brand.stringValue === filteredOption.toUpperCase()
           })
-          filtered.sort((a: FilterCar, b: FilterCar) => {
+          filtered.sort((a: NewCarData, b: NewCarData) => {
             if (sortedOption === "Price-down") {
-              console.log(b.fields.price.stringValue)
               return (
                 parseInt(b.fields.price.stringValue) -
                 parseInt(a.fields.price.stringValue)
               )
             } else if (sortedOption === "Price-up") {
-              console.log(b.fields.price.stringValue)
               return (
                 parseInt(a.fields.price.stringValue) -
                 parseInt(b.fields.price.stringValue)
               )
             } else {
-              return a.fields.brand.stringValue.localeCompare(
-                b.fields.brand.stringValue
+              return a.fields.name.stringValue.localeCompare(
+                b.fields.name.stringValue
               )
             }
           })

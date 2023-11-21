@@ -1,11 +1,12 @@
 import { FormEvent } from "react"
 import AnchorTagBtn from "../components/AnchorTagBtn"
 import Button from "../components/Button"
-import { url } from "../firebase-config"
+import { firebaseConfig } from "../firebase-config"
 import { useNavigate } from "react-router-dom"
 import { brands } from "../brands"
 import { observer } from "mobx-react"
 import newCarStore from "../stores/NewCarStore"
+import ApiService from "../services/ApiService"
 
 const New = observer(() => {
   const { name, brand, price, setName, setPrice, setBrand, resetForm } =
@@ -23,25 +24,19 @@ const New = observer(() => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`)
-        }
-        return response.json()
-      })
-      .then((data) => {
-        console.log("Data posted to Firestore:", data)
-      })
-      .catch((error) => {
-        console.error("Error posting data:", error)
-      })
+    const apiService = new ApiService(
+      `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
+    )
+    try {
+      const responseData = await apiService.fetchData(
+        `${firebaseConfig.collection}?key=${firebaseConfig.apiKey}`,
+        data,
+        "POST"
+      )
+      console.log("Data posted:", responseData)
+    } catch (error) {
+      console.error("API request failed:", error)
+    }
     resetForm()
     navigate("/")
   }

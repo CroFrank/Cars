@@ -17,9 +17,6 @@ interface Car {
   price: CarData
 }
 
-interface FilterCar {
-  fields: { brand: { stringValue: string }; price: { stringValue: string } }
-}
 interface AnchorTagProps {
   location: string
   style: "create" | "edit" | "cancel"
@@ -44,4 +41,20 @@ interface PaginationProps {
   endIndex: number
   allCars: CarProps[]
   carsPerPage: number
+}
+
+interface NewCarData {
+  fields: {
+    name: { stringValue: string }
+    brand: { stringValue: string }
+    price: { stringValue: string }
+  }
+}
+
+interface RequestOptions {
+  method?: string
+  headers: {
+    "Content-Type": string
+  }
+  body?: string
 }
