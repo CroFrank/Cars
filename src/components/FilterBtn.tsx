@@ -1,4 +1,4 @@
-import { brands } from "../brands"
+import { brands } from "../utils/brands"
 
 export default function FilterBtn({ option, action }: FilterBtnProps) {
   return (

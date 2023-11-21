@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from "mobx"
 
-class EditCarStore {
+export class EditCarStore {
   name = ""
   brand = ""
   price = ""

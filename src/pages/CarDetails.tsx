@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router"
 import AnchorTagBtn from "../components/AnchorTagBtn"
 import Button from "../components/Button"
-import { firebaseConfig } from "../firebase-config"
+import { firebaseConfig } from "../utils/firebase-config"
 import { useEffect } from "react"
 import { observer } from "mobx-react"
 import carDetailsStore from "../stores/CarDetailStore"
@@ -31,11 +31,11 @@ const CarDetails = observer(() => {
   }, [])
 
   const handleDelete = async () => {
-    const apiPOSTService = new ApiService(
+    const apiDELETEService = new ApiService(
       `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
     )
     try {
-      await apiPOSTService.fetchData(
+      await apiDELETEService.fetchData(
         `${firebaseConfig.collection}/${id}?key=${firebaseConfig.apiKey}`,
         "DELETE"
       )

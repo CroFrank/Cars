@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect } from "react"
 import Car from "../components/Car"
 import Pagination from "../components/Pagination"
-import { firebaseConfig } from "../firebase-config"
+import { firebaseConfig } from "../utils/firebase-config"
 import FilterBtn from "../components/FilterBtn"
 import SortBtn from "../components/SortBtn"
 import carsStore from "../stores/CarsStore"
