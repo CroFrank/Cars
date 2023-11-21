@@ -5,49 +5,44 @@ import { firebaseConfig } from "../firebase-config"
 import { useEffect } from "react"
 import { observer } from "mobx-react"
 import carDetailsStore from "../stores/CarDetailStore"
+import ApiService from "../services/ApiService"
 
 const CarDetails = observer(() => {
   const navigate = useNavigate()
   const { id } = useParams()
-
-  const urlOne = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/${firebaseConfig.collection}/${id}?key=${firebaseConfig.apiKey}`
   const { car, setCar } = carDetailsStore
+
   useEffect(() => {
     const getCars = async () => {
-      await fetch(urlOne)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`)
-          }
-          return response.json()
-        })
-        .then((data) => {
-          setCar(data.fields)
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error)
-        })
+      const apiGETService = new ApiService(
+        `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
+      )
+      try {
+        const responseData = await apiGETService.fetchData(
+          `${firebaseConfig.collection}/${id}?key=${firebaseConfig.apiKey}`
+        )
+        setCar(responseData.fields)
+      } catch (error) {
+        console.error("API request failed:", error)
+      }
     }
     getCars()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleDelete = async () => {
-    await fetch(urlOne, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`)
-        }
-        navigate("/")
-      })
-      .catch((error) => {
-        console.error("Error deleting document:", error)
-      })
+    const apiPOSTService = new ApiService(
+      `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
+    )
+    try {
+      await apiPOSTService.fetchData(
+        `${firebaseConfig.collection}/${id}?key=${firebaseConfig.apiKey}`,
+        "DELETE"
+      )
+      navigate("/")
+    } catch (error) {
+      console.error("API request failed:", error)
+    }
   }
 
   return (

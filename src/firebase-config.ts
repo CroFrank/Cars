@@ -8,7 +8,3 @@ export const firebaseConfig = {
   measurementId: import.meta.env.VITE_measurementId,
   collection: import.meta.env.VITE_collection,
 }
-
-export const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/${firebaseConfig.collection}?key=${firebaseConfig.apiKey}`
-// https://firestore.googleapis.com/v1/projects/cars-497b2/databases/(default)/documents/car-models?key=AIzaSyD63LaYXeq0q14ymqzHh113QXO_v3ZLcuY
-// https://firestore.googleapis.com/v1/projects/cars-497b2/databases/(default)/documents/car-models?key=AIzaSyD63LaYXeq0q14ymqzHh113QXO_v3ZLcuY

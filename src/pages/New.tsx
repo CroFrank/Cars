@@ -24,16 +24,15 @@ const New = observer(() => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const apiService = new ApiService(
+    const apiPOSTService = new ApiService(
       `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
     )
     try {
-      const responseData = await apiService.fetchData(
+      await apiPOSTService.fetchData(
         `${firebaseConfig.collection}?key=${firebaseConfig.apiKey}`,
-        data,
-        "POST"
+        "POST",
+        data
       )
-      console.log("Data posted:", responseData)
     } catch (error) {
       console.error("API request failed:", error)
     }

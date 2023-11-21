@@ -1,11 +1,12 @@
 import { ChangeEvent, useEffect } from "react"
 import Car from "../components/Car"
 import Pagination from "../components/Pagination"
-import { url } from "../firebase-config"
+import { firebaseConfig } from "../firebase-config"
 import FilterBtn from "../components/FilterBtn"
 import SortBtn from "../components/SortBtn"
 import carsStore from "../stores/CarsStore"
 import { observer } from "mobx-react"
+import ApiService from "../services/ApiService"
 
 const Home = observer(() => {
   const {
@@ -34,42 +35,41 @@ const Home = observer(() => {
 
   useEffect(() => {
     const getCars = async () => {
-      await fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`)
+      const apiGETService = new ApiService(
+        `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
+      )
+
+      try {
+        const responseData = await apiGETService.fetchData(
+          `${firebaseConfig.collection}?key=${firebaseConfig.apiKey}`
+        )
+        const filtered = responseData.documents.filter((car: NewCarData) => {
+          if (filteredOption === "All") {
+            return car
           }
-          return response.json()
+          return car.fields.brand.stringValue === filteredOption.toUpperCase()
         })
-        .then((data) => {
-          const filtered = data.documents.filter((car: NewCarData) => {
-            if (filteredOption === "All") {
-              return car
-            }
-            return car.fields.brand.stringValue === filteredOption.toUpperCase()
-          })
-          filtered.sort((a: NewCarData, b: NewCarData) => {
-            if (sortedOption === "Price-down") {
-              return (
-                parseInt(b.fields.price.stringValue) -
-                parseInt(a.fields.price.stringValue)
-              )
-            } else if (sortedOption === "Price-up") {
-              return (
-                parseInt(a.fields.price.stringValue) -
-                parseInt(b.fields.price.stringValue)
-              )
-            } else {
-              return a.fields.name.stringValue.localeCompare(
-                b.fields.name.stringValue
-              )
-            }
-          })
-          setCars(filtered)
+        filtered.sort((a: NewCarData, b: NewCarData) => {
+          if (sortedOption === "Price-down") {
+            return (
+              parseInt(b.fields.price.stringValue) -
+              parseInt(a.fields.price.stringValue)
+            )
+          } else if (sortedOption === "Price-up") {
+            return (
+              parseInt(a.fields.price.stringValue) -
+              parseInt(b.fields.price.stringValue)
+            )
+          } else {
+            return a.fields.name.stringValue.localeCompare(
+              b.fields.name.stringValue
+            )
+          }
         })
-        .catch((error) => {
-          console.error("Error fetching data:", error)
-        })
+        setCars(filtered)
+      } catch (error) {
+        console.error("API request failed:", error)
+      }
     }
     getCars()
   }, [filteredOption, sortedOption, setCars])

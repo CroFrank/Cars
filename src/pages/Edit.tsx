@@ -5,6 +5,7 @@ import { firebaseConfig } from "../firebase-config"
 import { observer } from "mobx-react"
 import editCarStore from "../stores/EditCarStore"
 import { brands } from "../brands"
+import ApiService from "../services/ApiService"
 
 const Edit = observer(() => {
   const { name, brand, price, setName, setBrand, setPrice } = editCarStore
@@ -17,28 +18,24 @@ const Edit = observer(() => {
   }
   const searchParams = new URLSearchParams(document.location.search)
   const id = searchParams.get("id")
-  const urlOne = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/${firebaseConfig.collection}/${id}?key=${firebaseConfig.apiKey}`
+
   const navigate = useNavigate()
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    await fetch(urlOne, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`)
-        }
-        console.log("Document updated successfully.")
-        navigate(`/car/${id}`)
-      })
-      .catch((error) => {
-        console.error("Error updating document:", error)
-      })
+    const apiPATCHService = new ApiService(
+      `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
+    )
+    try {
+      await apiPATCHService.fetchData(
+        `${firebaseConfig.collection}/${id}?key=${firebaseConfig.apiKey}`,
+        "PATCH",
+        data
+      )
+      navigate(`/car/${id}`)
+    } catch (error) {
+      console.error("API request failed:", error)
+    }
   }
 
   return (

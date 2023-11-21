@@ -11,20 +11,29 @@ class ApiService {
     return response.json()
   }
 
-  async fetchData(endpoint: string, data?: NewCarData, method?: string) {
+  async fetchData(endpoint: string, method?: string, data?: NewCarData) {
     const url = `${this.baseUrl}/${endpoint}`
+    console.log(url)
     try {
-      if (data && method) {
+      if (!data && !method) {
+        const response = await fetch(url)
+        return this.handleResponse(response)
+      } else if (method && !data) {
         const response = await fetch(url, {
-          method: "POST",
+          method,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        return this.handleResponse(response)
+      } else {
+        const response = await fetch(url, {
+          method,
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         })
-        return this.handleResponse(response)
-      } else {
-        const response = await fetch(url)
         return this.handleResponse(response)
       }
     } catch (error) {
