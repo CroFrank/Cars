@@ -1,20 +1,26 @@
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useEffect } from "react"
 import Car from "../components/Car"
 import Pagination from "../components/Pagination"
 import { url } from "../firebase-config"
 import FilterBtn from "../components/FilterBtn"
 import SortBtn from "../components/SortBtn"
+import carsStore from "../stores/CarsStore"
+import { observer } from "mobx-react"
 
-export default function Home() {
-  const [cars, setCars] = useState([])
-  const [filteredOption, setFilteredOption] = useState("All")
-  const [sortedOption, setSortedOption] = useState("Alphabetic")
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const carsPerPage = 12
-  const startIndex = (currentPage - 1) * carsPerPage
-  const endIndex = startIndex + carsPerPage
-  const currentCars = cars.slice(startIndex, endIndex)
+const Home = observer(() => {
+  const {
+    cars,
+    filteredOption,
+    sortedOption,
+    currentPage,
+    endIndex,
+    currentCars,
+    setFilteredOption,
+    setSortedOption,
+    setCurrentPage,
+    setCars,
+    carsPerPage,
+  } = carsStore
 
   const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setFilteredOption(e.target.value)
@@ -68,7 +74,7 @@ export default function Home() {
         })
     }
     getCars()
-  }, [filteredOption, sortedOption])
+  }, [filteredOption, sortedOption, setCars])
 
   return (
     <div className="container mx-auto flex-grow p-4">
@@ -95,4 +101,6 @@ export default function Home() {
       </main>
     </div>
   )
-}
+})
+
+export default Home

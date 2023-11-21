@@ -1,6 +1,3 @@
-// import { initializeApp } from "firebase/app"
-// import { getFirestore } from "firebase/firestore"
-
 export const firebaseConfig = {
   apiKey: import.meta.env.VITE_apiKey,
   authDomain: import.meta.env.VITE_authDomain,
@@ -13,6 +10,3 @@ export const firebaseConfig = {
 }
 
 export const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/${firebaseConfig.collection}?key=${firebaseConfig.apiKey}`
-
-// export const app = initializeApp(firebaseConfig)
-// export const db = getFirestore(app)

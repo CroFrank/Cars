@@ -5,11 +5,11 @@ import { url } from "../firebase-config"
 import { useNavigate } from "react-router-dom"
 import { brands } from "../brands"
 import { observer } from "mobx-react"
-import carStore from "../stores/CarStore"
+import newCarStore from "../stores/NewCarStore"
 
 const New = observer(() => {
   const { name, brand, price, setName, setPrice, setBrand, resetForm } =
-    carStore
+    newCarStore
 
   const data = {
     fields: {

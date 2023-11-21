@@ -2,19 +2,16 @@ import { useNavigate, useParams } from "react-router"
 import AnchorTagBtn from "../components/AnchorTagBtn"
 import Button from "../components/Button"
 import { firebaseConfig } from "../firebase-config"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { observer } from "mobx-react"
+import carDetailsStore from "../stores/CarDetailStore"
 
-export default function CarDetails() {
+const CarDetails = observer(() => {
   const navigate = useNavigate()
   const { id } = useParams()
 
   const urlOne = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/${firebaseConfig.collection}/${id}?key=${firebaseConfig.apiKey}`
-  const [car, setCar] = useState<Car>({
-    name: { stringValue: "Car model" },
-    brand: { stringValue: "Car Brand" },
-    price: { stringValue: "Price" },
-  })
-
+  const { car, setCar } = carDetailsStore
   useEffect(() => {
     const getCars = async () => {
       await fetch(urlOne)
@@ -91,4 +88,6 @@ export default function CarDetails() {
       </main>
     </div>
   )
-}
+})
+
+export default CarDetails

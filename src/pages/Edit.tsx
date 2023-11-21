@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom"
 import Button from "../components/Button"
-import { FormEvent, useState } from "react"
+import { FormEvent } from "react"
 import { firebaseConfig } from "../firebase-config"
+import { observer } from "mobx-react"
+import editCarStore from "../stores/EditCarStore"
+import { brands } from "../brands"
 
-export default function Edit() {
-  const [name, setName] = useState("")
-  const [brand, setBrand] = useState("")
-  const [price, setPrice] = useState("")
+const Edit = observer(() => {
+  const { name, brand, price, setName, setBrand, setPrice } = editCarStore
   const data = {
     fields: {
       name: { stringValue: name },
@@ -74,14 +75,21 @@ export default function Edit() {
           >
             Car Brand
           </label>
-          <input
-            type="text"
+          <select
             id="carBrand"
             name="brand"
             value={brand}
             onChange={(e) => setBrand(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
-          />
+          >
+            {brands.map((brand, index) => {
+              return (
+                <option key={index} value={brand}>
+                  {brand.toUpperCase()}
+                </option>
+              )
+            })}
+          </select>
         </div>
 
         <div className="mb-4">
@@ -113,4 +121,6 @@ export default function Edit() {
       </form>
     </div>
   )
-}
+})
+
+export default Edit

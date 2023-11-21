@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from "mobx"
 
-class CarStore {
+class NewCarStore {
   name = ""
   brand = ""
   price = ""
@@ -36,5 +36,5 @@ class CarStore {
   }
 }
 
-const carStore = new CarStore()
-export default carStore
+const newCarStore = new NewCarStore()
+export default newCarStore
