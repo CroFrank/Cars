@@ -9,11 +9,13 @@ import { useNavigate } from "react-router-dom"
 export default function Form({
   store,
   action,
-  button,
+  edit,
+  car,
 }: {
   store: NewCarStore | EditCarStore
   action: (e: FormEvent) => Promise<void>
-  button: boolean
+  edit: boolean
+  car: Car
 }) {
   const { name, brand, price, setName, setPrice, setBrand } = store
   const navigate = useNavigate()
@@ -37,7 +39,7 @@ export default function Form({
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="a"
+          placeholder={edit ? car.name.stringValue : ""}
           className="mt-1 p-2 w-full border rounded-md"
         />
       </div>
@@ -56,6 +58,9 @@ export default function Form({
           onChange={(e) => setBrand(e.target.value)}
           className="mt-1 p-2 w-full border rounded-md"
         >
+          <option value="" disabled>
+            {edit ? car.brand.stringValue : "Select"}
+          </option>
           {brands.map((brand, index) => {
             return (
               <option key={index} value={brand}>
@@ -79,18 +84,19 @@ export default function Form({
           name="price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+          placeholder={edit ? car.price.stringValue : ""}
           className="mt-1 p-2 w-full border rounded-md"
         />
       </div>
 
       <div className="flex justify-between">
-        {button ? (
+        {edit ? (
           <Button type="submit" style="submit" children="Edit" />
         ) : (
           <Button type="submit" style="submit" children="Create" />
         )}
 
-        {button ? (
+        {edit ? (
           <Button
             action={() => navigate(-1)}
             style="delete"
