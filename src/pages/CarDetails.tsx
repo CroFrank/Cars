@@ -5,7 +5,7 @@ import { firebaseConfig } from "../utils/firebase-config"
 import { useEffect } from "react"
 import { observer } from "mobx-react"
 import carDetailsStore from "../stores/CarDetailStore"
-import ApiService from "../services/ApiService"
+import { ApiService } from "../services/ApiService"
 
 const CarDetails = observer(() => {
   const navigate = useNavigate()

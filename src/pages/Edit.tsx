@@ -3,7 +3,7 @@ import { FormEvent } from "react"
 import { firebaseConfig } from "../utils/firebase-config"
 import { observer } from "mobx-react"
 import editCarStore from "../stores/EditCarStore"
-import ApiService from "../services/ApiService"
+import { ApiService } from "../services/ApiService"
 import Form from "../components/Form"
 
 const Edit = observer(() => {

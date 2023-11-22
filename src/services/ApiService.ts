@@ -1,5 +1,6 @@
-class ApiService {
+export class ApiService {
   baseUrl: string
+
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl
   }
@@ -13,7 +14,6 @@ class ApiService {
 
   async fetchData(endpoint: string, method?: string, data?: NewCarData) {
     const url = `${this.baseUrl}/${endpoint}`
-    console.log(url)
     try {
       if (!data && !method) {
         const response = await fetch(url)
@@ -41,5 +41,3 @@ class ApiService {
     }
   }
 }
-
-export default ApiService

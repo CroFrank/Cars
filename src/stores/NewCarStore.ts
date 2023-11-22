@@ -1,11 +1,16 @@
 import { action, makeObservable, observable } from "mobx"
+import { ApiService } from "../services/ApiService"
+import { firebaseConfig } from "../utils/firebase-config"
 
 export class NewCarStore {
   name = ""
   brand = ""
   price = ""
+  apiService: ApiService
 
-  constructor() {
+  constructor(apiService: ApiService) {
+    this.apiService = apiService
+
     makeObservable(this, {
       name: observable,
       brand: observable,
@@ -34,7 +39,29 @@ export class NewCarStore {
     this.brand = ""
     this.price = ""
   }
+
+  saveCar = async () => {
+    try {
+      const data = {
+        fields: {
+          name: { stringValue: this.name },
+          brand: { stringValue: this.brand },
+          price: { stringValue: this.price },
+        },
+      }
+      await this.apiService.fetchData(
+        `${firebaseConfig.collection}?key=${firebaseConfig.apiKey}`,
+        "POST",
+        data
+      )
+      this.resetForm()
+    } catch (error) {
+      console.error("Error saving car:", error)
+    }
+  }
 }
 
-const newCarStore = new NewCarStore()
-export default newCarStore
+const apiPOSTService = new ApiService(
+  `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
+)
+export const newCarStore = new NewCarStore(apiPOSTService)

@@ -6,7 +6,7 @@ import FilterBtn from "../components/FilterBtn"
 import SortBtn from "../components/SortBtn"
 import carsStore from "../stores/CarsStore"
 import { observer } from "mobx-react"
-import ApiService from "../services/ApiService"
+import { ApiService } from "../services/ApiService"
 
 const Home = observer(() => {
   const {
