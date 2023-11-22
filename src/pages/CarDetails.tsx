@@ -4,27 +4,22 @@ import Button from "../components/Button"
 import { firebaseConfig } from "../utils/firebase-config"
 import { useEffect } from "react"
 import { observer } from "mobx-react"
-import carDetailsStore from "../stores/CarDetailStore"
+import { carDetailsStore } from "../stores/CarDetailStore"
 import { ApiService } from "../services/ApiService"
 
 const CarDetails = observer(() => {
   const navigate = useNavigate()
   const { id } = useParams()
-  const { car, setCar } = carDetailsStore
+  if (!id) {
+    throw new Error("missing id")
+  }
+  // idk why not working if 'car' not destructed
+  const { car, getCarDetails } = carDetailsStore
+  console.log(car)
 
   useEffect(() => {
     const getCars = async () => {
-      const apiGETService = new ApiService(
-        `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
-      )
-      try {
-        const responseData = await apiGETService.fetchData(
-          `${firebaseConfig.collection}/${id}?key=${firebaseConfig.apiKey}`
-        )
-        setCar(responseData.fields)
-      } catch (error) {
-        console.error("API request failed:", error)
-      }
+      await getCarDetails(id)
     }
     getCars()
     // eslint-disable-next-line react-hooks/exhaustive-deps

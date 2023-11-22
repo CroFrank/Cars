@@ -5,7 +5,7 @@ import Form from "../components/Form"
 import { newCarStore } from "../stores/NewCarStore"
 
 const New = observer(() => {
-  // idk why setName, setBrand... not working if not destructed
+  // idk why not working if 'name, brand, price' not destructed
   const { name, brand, price, saveCar } = newCarStore
   console.log(name, brand, price)
 

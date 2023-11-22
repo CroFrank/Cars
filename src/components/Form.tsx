@@ -58,7 +58,7 @@ export default function Form({
           {brands.map((brand, index) => {
             return (
               <option key={index} value={brand}>
-                {brand.toUpperCase()}
+                {brand}
               </option>
             )
           })}
@@ -83,7 +83,12 @@ export default function Form({
       </div>
 
       <div className="flex justify-between">
-        <Button type="submit" style="submit" children="Create" />
+        {button ? (
+          <Button type="submit" style="submit" children="Edit" />
+        ) : (
+          <Button type="submit" style="submit" children="Create" />
+        )}
+
         {button ? (
           <Button
             action={() => navigate(-1)}
