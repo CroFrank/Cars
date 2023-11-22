@@ -94,7 +94,7 @@ class CarsStore {
   }
 }
 
-const apiGETService = new ApiService(
+const apiService = new ApiService(
   `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
 )
-export const carsStore = new CarsStore(apiGETService)
+export const carsStore = new CarsStore(apiService)

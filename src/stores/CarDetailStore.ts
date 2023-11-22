@@ -33,9 +33,19 @@ class CarDetailsStore {
       console.error("API request failed:", error)
     }
   }
+  deleteCar = async (id: string) => {
+    try {
+      await this.apiService.fetchData(
+        `${firebaseConfig.collection}/${id}?key=${firebaseConfig.apiKey}`,
+        "DELETE"
+      )
+    } catch (error) {
+      console.error("API request failed:", error)
+    }
+  }
 }
 
-const apiGETService = new ApiService(
+const apiService = new ApiService(
   `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
 )
-export const carDetailsStore = new CarDetailsStore(apiGETService)
+export const carDetailsStore = new CarDetailsStore(apiService)

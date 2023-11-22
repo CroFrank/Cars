@@ -37,6 +37,7 @@ export default function Form({
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="a"
           className="mt-1 p-2 w-full border rounded-md"
         />
       </div>

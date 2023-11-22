@@ -56,7 +56,7 @@ export class EditCarStore {
   }
 }
 
-const apiPATCHService = new ApiService(
+const apiService = new ApiService(
   `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents`
 )
-export const editCarStore = new EditCarStore(apiPATCHService)
+export const editCarStore = new EditCarStore(apiService)
