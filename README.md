@@ -1,20 +1,25 @@
 # Frontend app + BaaS (Firebase)
 
-Hosted on Vercel, you can visit [here](https://name-predicting.vercel.app/)
+Hosted on Vercel, you can visit [here](https://marvelous-cars.vercel.app/)
 
 ### About app
 
-In this app you write your name and it gives you some info about your name such as average age of person with that name, most common gender, country and more.
+Full CRUD app where you can create, read, update and delete your car model, brand and give it a price.
 
 ### I used:
 
-- Nextjs - React framework for building web app
+- Vite - build tool
+- Typescript
 - Tailwind for CSS
-- fetch API to get data from https://agify.io/
+- MobX - state manager
+- BaaS - Firebase(database + backend)
+- JS classes for ApiServices
 
 ### Try it out
 
-App is live and hosted on Vercel and link is on top of Readme file. If you want code on your local machine, you can use "git clone" + "npm i" + "npm run dev"
+App is live and hosted on Vercel and link is on top of Readme file. If you want code on your local machine, you can use "git clone" + "npm i" + "npm run dev".
+
+BUT you will need your own backend and database and you'll need to update your .env variables. Feel free to ask me for help if needed, contact on the bottom of Readme file.
 
 ### Contributing
 
