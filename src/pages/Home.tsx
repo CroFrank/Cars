@@ -42,7 +42,7 @@ const Home = observer(() => {
     <div className="container mx-auto flex-grow p-4">
       <main className="flex flex-col">
         <section className="flex flex-col items-center sm:flex-row sm:justify-between mt-7 font-bold">
-          <h1 className="text-red-700 text-3xl max-sm:mb-5">MONO CARS</h1>
+          <h1 className="text-red-700 text-3xl max-sm:mb-5">Marvelous CARS</h1>
           <div className="flex justify-between gap-4">
             <FilterBtn action={handleFilterChange} option={filteredOption} />
             <SortBtn action={handleSortedChange} option={sortedOption} />

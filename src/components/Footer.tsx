@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="bg-gray-800 text-white py-4">
       <div className="container mx-auto text-center">
         <p>
-          &copy; 2023 <span className="text-red-500">Mono Software</span>. All
+          &copy; 2023 <span className="text-red-500">Marvelous Cars</span>. All
           rights reserved.
         </p>
       </div>

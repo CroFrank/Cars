@@ -14,8 +14,8 @@ export default function Form({
 }: {
   store: NewCarStore | EditCarStore
   action: (e: FormEvent) => Promise<void>
-  edit: boolean
-  car: Car
+  edit?: boolean
+  car?: Car
 }) {
   const { name, brand, price, setName, setPrice, setBrand } = store
   const navigate = useNavigate()
@@ -39,8 +39,10 @@ export default function Form({
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder={edit ? car.name.stringValue : ""}
+          placeholder={edit ? car!.name.stringValue : ""}
           className="mt-1 p-2 w-full border rounded-md"
+          required
+          maxLength={30}
         />
       </div>
 
@@ -57,9 +59,10 @@ export default function Form({
           value={brand}
           onChange={(e) => setBrand(e.target.value)}
           className="mt-1 p-2 w-full border rounded-md"
+          required
         >
           <option value="" disabled>
-            {edit ? car.brand.stringValue : "Select"}
+            {edit ? car!.brand.stringValue : "Select"}
           </option>
           {brands.map((brand, index) => {
             return (
@@ -84,8 +87,10 @@ export default function Form({
           name="price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          placeholder={edit ? car.price.stringValue : ""}
+          placeholder={edit ? car!.price.stringValue : ""}
           className="mt-1 p-2 w-full border rounded-md"
+          required
+          maxLength={15}
         />
       </div>
 

@@ -22,7 +22,7 @@ const New = observer(() => {
       <h2 className="mx-auto mt-8 mb-12 text-center font-semibold text-yellow-600 text-2xl">
         Create new car model
       </h2>
-      <Form store={newCarStore} action={handleSubmit} button={false} />
+      <Form store={newCarStore} action={handleSubmit} />
     </div>
   )
 })

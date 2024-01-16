@@ -1,27 +1,29 @@
-# React + TypeScript + Vite
+# Frontend app + BaaS (Firebase)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hosted on Vercel, you can visit [here](https://name-predicting.vercel.app/)
 
-Currently, two official plugins are available:
+### About app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In this app you write your name and it gives you some info about your name such as average age of person with that name, most common gender, country and more.
 
-## Expanding the ESLint configuration
+### I used:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Nextjs - React framework for building web app
+- Tailwind for CSS
+- fetch API to get data from https://agify.io/
 
-- Configure the top-level `parserOptions` property like this:
+### Try it out
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+App is live and hosted on Vercel and link is on top of Readme file. If you want code on your local machine, you can use "git clone" + "npm i" + "npm run dev"
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Contributing
+
+Contributions are welcome! If you find any issues or want to enhance the application, feel free to open an issue or submit a pull request.
+
+### License
+
+This project is licensed under the MIT License. You can do whatever you want with this code.
+
+### Contact
+
+If you have any questions feel free to ask [here](https://www.weblifesupport.com/)
